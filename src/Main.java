@@ -107,7 +107,25 @@ public class Main {
 	    };
 
 	    int roll = random.nextInt(20); // Gera um número entre 0 e 19
+	    if (terrainsEn.equals("Boneyard") || terrainsPt.equals("Cemitério de ossos")) {
+	        BoneyardEncounter(random);
+	    }
+
 	    return isPortuguese ? terrainsPt[roll] : terrainsEn[roll];
+	}
+
+	private static void BoneyardEncounter(Random random) {
+		int roll = random.nextInt(20);
+		if(roll>=1&&roll<=14) {
+			System.out.println("No encounter");
+		}
+		else if(roll>=15&&roll<=18) {
+			System.out.println("3d4 skeletons");
+		}
+		else {
+			System.out.println("1d3 minotaur skeleton");
+		}
+		
 	}
 
 
