@@ -52,6 +52,91 @@ public class Main {
 
 	}
 
+	
+	private static void DarklakeRandomEncounter() {
+	    Random random = new Random();
+	    
+	    // Pergunta ao jogador se os personagens estão ancorados (1) ou se estão em movimento (2)
+	    int anchoredChoice = Integer.parseInt(JOptionPane.showInputDialog(
+	            "Are the characters anchored or ashore?\n1 - Yes\n2 - No"));
+
+	    int roll = random.nextInt(20) + 1; // d20
+
+	    System.out.print("Darklake Encounter: ");
+
+	    if (roll <= 13) {
+	        System.out.println("No encounter.");
+	    } else if (roll <= 15) {
+	        int terrainRoll = random.nextInt(10) + 1; // d10 para Terrain Encounters
+	        System.out.println("Terrain Encounter: " + getDarklakeTerrain(terrainRoll));
+	    } else if (roll <= 17 || anchoredChoice == 1) { // Se estiver ancorado (1), sempre criatura
+	        int creatureRoll = random.nextInt(12) + 1; // d12 para Creature Encounters
+	        System.out.println("Creature Encounter: " + getDarklakeCreature(creatureRoll));
+	    } else {
+	        int terrainRoll = random.nextInt(10) + 1; // d10 para Terrain Encounters
+	        int creatureRoll = random.nextInt(12) + 1; // d12 para Creature Encounters
+	        System.out.println("Terrain and Creature Encounter: " + getDarklakeTerrain(terrainRoll) +
+	                " featuring " + getDarklakeCreature(creatureRoll));
+	    }
+	}
+
+	private static String getDarklakeTerrain(int roll) {
+	    if (roll == 1) {
+	        return "Collision";
+	    } else if (roll == 2) {
+	        return "Falls or locks";
+	    } else if (roll == 3) {
+	        return "Island";
+	    } else if (roll == 4) {
+	        return "Low ceiling";
+	    } else if (roll == 5) {
+	        return "Rockfall";
+	    } else if (roll == 6) {
+	        return "Rough current";
+	    } else if (roll == 7) {
+	        return "Run aground";
+	    } else if (roll == 8) {
+	        return "Stone teeth";
+	    } else if (roll == 9) {
+	        return "Tight passage";
+	    } else if (roll == 10) {
+	        return "Whirlpool";
+	    } else {
+	        return "Unknown terrain";
+	    }
+	}
+
+	private static String getDarklakeCreature(int roll) {
+	    if (roll == 1) {
+	        return "A group of kuo-toa hunters";
+	    } else if (roll == 2) {
+	        return "A swarm of quippers";
+	    } else if (roll == 3) {
+	        return "A patrol of duergar slavers";
+	    } else if (roll == 4) {
+	        return "A hungry water weird";
+	    } else if (roll == 5) {
+	        return "A cave fisher lurking on a high ledge";
+	    } else if (roll == 6) {
+	        return "A roper disguised as a stalactite";
+	    } else if (roll == 7) {
+	        return "An umber hulk digging near the shoreline";
+	    } else if (roll == 8) {
+	        return "A group of drow scouts in a raft";
+	    } else if (roll == 9) {
+	        return "A giant octopus hunting for food";
+	    } else if (roll == 10) {
+	        return "A shipwrecked human survivor";
+	    } else if (roll == 11) {
+	        return "A group of myconid refugees";
+	    } else if (roll == 12) {
+	        return "A spectral ghost of a long-dead sailor";
+	    } else {
+	        return "Unknown creature";
+	    }
+	}
+
+
 	private static void CreatureEncounter(int i) {
 		Random random = new Random();
 		int roll = random.nextInt(i);
